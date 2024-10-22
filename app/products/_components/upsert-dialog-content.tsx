@@ -114,7 +114,7 @@ const UpsertProductDialogContent = ({
             name="stock"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Estoque</FormLabel>
+                <FormLabel>Stock</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
