@@ -76,7 +76,7 @@ const CreateProductButton = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nome</FormLabel>
+                  <FormLabel>Name</FormLabel>
                   <FormControl>
                     <Input placeholder="Type product name" {...field} />
                   </FormControl>
@@ -89,7 +89,7 @@ const CreateProductButton = () => {
               name="price"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Preço</FormLabel>
+                  <FormLabel>Price</FormLabel>
                   <FormControl>
                     <NumericFormat
                       thousandSeparator="."

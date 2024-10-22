@@ -1,19 +1,19 @@
 import { z } from "zod";
 export const createProductSchema = z.object({
   name: z.string().trim().min(1, {
-    message: "O nome do produto é obrigatório.",
+    message: "Product name is required.",
   }),
   price: z.number().min(0.01, {
-    message: "O preço do produto é obrigatório.",
+    message: "Product price is required.",
   }),
   stock: z.coerce
     .number()
     .positive({
-      message: "A quantidade em estoque deve ser positiva.",
+      message: "Stock quantity is required.",
     })
     .int()
     .min(0, {
-      message: "A quantidade em estoque é obrigatória.",
+      message: "Stock quantity is required.",
     }),
 });
 export type CreateProductSchema = z.infer<typeof createProductSchema>;

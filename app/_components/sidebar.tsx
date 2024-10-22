@@ -14,11 +14,11 @@ const Sidebar = () => {
         </SidebarButton>
         <SidebarButton href="/products">
           <PackageIcon size={20} />
-          Produtos
+          Products
         </SidebarButton>
         <SidebarButton href="/sales">
           <ShoppingBasketIcon size={20} />
-          Vendas
+          Sales
         </SidebarButton>
       </div>
     </div>
