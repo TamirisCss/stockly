@@ -33,6 +33,7 @@ import { PlusIcon } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import SalesTableDropdownMenu from "./table-dropdown-menu";
 
 const formSchema = z.object({
   productId: z.string().uuid({
@@ -107,6 +108,12 @@ const UpsertSheetContent = ({
     }, 0);
   }, [selectedProducts]);
 
+  const onDelete = (productId: string) => {
+    setSelectedProducts((currentProducts) => {
+      return currentProducts.filter((product) => product.id !== productId);
+    });
+  };
+
   return (
     <SheetContent className="!max-w-[700px]">
       <SheetHeader>
@@ -163,6 +170,7 @@ const UpsertSheetContent = ({
             <TableHead>Unit price</TableHead>
             <TableHead>Quantity</TableHead>
             <TableHead>Total</TableHead>
+            <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -173,6 +181,9 @@ const UpsertSheetContent = ({
               <TableCell>{product.quantity}</TableCell>
               <TableCell>
                 {formatCurrency(product.price * product.quantity)}
+              </TableCell>
+              <TableCell>
+                <SalesTableDropdownMenu product={product} onDelete={onDelete} />
               </TableCell>
             </TableRow>
           ))}
