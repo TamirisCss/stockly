@@ -7,14 +7,8 @@ export const upsertProductSchema = z.object({
   price: z.number().min(0.01, {
     message: "Product price is required.",
   }),
-  stock: z.coerce
-    .number()
-    .positive({
-      message: "Stock quantity is required.",
-    })
-    .int()
-    .min(0, {
-      message: "Stock quantity is required.",
-    }),
+  stock: z.coerce.number().int().min(0, {
+    message: "Product stock is required.",
+  }),
 });
 export type UpsertProductSchema = z.infer<typeof upsertProductSchema>;
