@@ -36,7 +36,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import SalesTableDropdownMenu from "./table-dropdown-menu";
 import { toast } from "sonner";
-import { createSale } from "@/app/_actions/create-sale";
+import { createSale } from "@/app/_actions/sale/create-sale";
 import { useAction } from "next-safe-action/hooks";
 import { flattenValidationErrors } from "next-safe-action";
 
