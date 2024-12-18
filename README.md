@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stockly
+
+Stockly is a modern web application designed for managing stock and inventory efficiently. The app is built with Next.js, TypeScript, and TailwindCSS, and incorporates several other powerful libraries to enhance the user experience.
+
+## Features
+
+- Manage inventory and stock data.
+- Responsive UI with TailwindCSS.
+- Built-in server-side rendering and API handling via Next.js.
+- Integrated with Prisma for database interactions.
+- Form validation using React Hook Form and Zod.
+
+---
+
+## Prerequisites
+
+Ensure you have the following installed on your system:
+
+- [Node.js](https://nodejs.org/) (version 18 or later)
+- [Docker](https://www.docker.com/) (for running the server)
+- [Git](https://git-scm.com/)
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Clone the Repository
+
+To clone the project from GitHub, use the following commands:
+
+```bash
+# Clone the repository
+git clone https://github.com/TamirisCss/stockly.git
+
+# Navigate to the project directory
+cd stockly
+```
+
+### Install Dependencies
+
+Run the following command to install the required dependencies:
+
+```bash
+npm install
+```
+
+### Environment Setup
+
+Create a `.env` file in the root directory and configure the necessary environment variables. For Prisma and database connections, refer to the [Prisma documentation](https://www.prisma.io/docs) for guidance.
+
+### Run the Application
+
+Start the development server using:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will be available at `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Running with Docker
 
-## Learn More
+### Build Docker Image
 
-To learn more about Next.js, take a look at the following resources:
+Run the following command to build the Docker image:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+docker build -t stockly .
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Run the Docker Container
 
-## Deploy on Vercel
+Start the container with:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+docker run -p 3000:3000 stockly
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Technologies Used
+
+- **Framework:** [Next.js](https://nextjs.org/)
+- **Styling:** [TailwindCSS](https://tailwindcss.com/)
+- **Database:** [Prisma](https://www.prisma.io/)
+- **Form Handling:** [React Hook Form](https://react-hook-form.com/) and [Zod](https://zod.dev/)
+
+---
+
+## Contributing
+
+Contributions are welcome! Feel free to submit issues or pull requests.
+
+---
+
+## Contact
+
+For inquiries or support, contact me at tamiris.css@gmail.com
