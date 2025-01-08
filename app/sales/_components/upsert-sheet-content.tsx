@@ -186,7 +186,7 @@ const UpsertSheetContent = ({
   };
 
   return (
-    <SheetContent className="!max-w-[700px]">
+    <SheetContent className="!max-w-[700px] overflow-y-auto">
       <SheetHeader>
         <SheetTitle>New Sale</SheetTitle>
         <SheetDescription>Enter your sales details below.</SheetDescription>
