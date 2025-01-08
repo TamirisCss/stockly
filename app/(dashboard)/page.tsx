@@ -19,10 +19,12 @@ import { getDashboard } from "../_data-access/dashboard/get-dashboard";
 import { formatCurrency } from "../_helpers/currency";
 import RevenueChart from "./_components/revenue-chart";
 import MostSoldProductItem from "./_components/most-sold-product-item";
+import TotalRevenueCard from "./_components/total-revenue-card";
+import { Suspense } from "react";
+import { Skeleton } from "../_components/ui/skeleton";
 
 const Home = async () => {
   const {
-    totalRevenue,
     todayRevenue,
     totalSales,
     totalStock,
@@ -40,13 +42,11 @@ const Home = async () => {
         </HeaderLeft>
       </Header>
       <div className="grid grid-cols-2 gap-6">
-        <SummaryCard>
-          <SummaryCardIcon>
-            <DollarSign />
-          </SummaryCardIcon>
-          <SummaryCardTitle>Total Revenue</SummaryCardTitle>
-          <SummaryCardValue>{formatCurrency(totalRevenue)}</SummaryCardValue>
-        </SummaryCard>
+        <Suspense
+          fallback={<Skeleton className="rounded-xl bg-white bg-opacity-75" />}
+        >
+          <TotalRevenueCard />
+        </Suspense>
         <SummaryCard>
           <SummaryCardIcon>
             <DollarSign />
@@ -80,13 +80,13 @@ const Home = async () => {
       </div>
       <div className="grid min-h-0 grid-cols-[minmax(0,2.5fr),minmax(0,1fr)] gap-6">
         <div className="flex h-full flex-col overflow-hidden rounded-xl bg-white p-6">
-          <p className="text-lg font-semibold text-slate-900">Receita</p>
-          <p className="text-sm text-slate-400">Últimos 14 dias</p>
+          <p className="text-lg font-semibold text-slate-900">Revenue</p>
+          <p className="text-sm text-slate-400">Last 14 days</p>
           <RevenueChart data={totalLast14DaysRevenue} />
         </div>
         <div className="flex h-full flex-col overflow-hidden rounded-xl bg-white">
           <p className="p-6 text-lg font-semibold text-slate-900">
-            Produtos mais vendidos
+            Top sales products
           </p>
           <div className="space-y-7 overflow-y-auto px-6 pb-6">
             {mostSoldProducts.map((product) => (

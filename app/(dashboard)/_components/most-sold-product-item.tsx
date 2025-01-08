@@ -7,7 +7,6 @@ interface MostSoldProductProps {
 }
 
 const MostSoldProductItem = ({ product }: MostSoldProductProps) => {
-  console.log({ product });
   return (
     <div className="flex items-center justify-between">
       <div className="space-y-[6px]">
@@ -18,9 +17,10 @@ const MostSoldProductItem = ({ product }: MostSoldProductProps) => {
         </p>
       </div>
       <div>
-        <p className="text-sm font-semibold">{product.totalSold} vendido(s)</p>
+        <p className="text-sm font-semibold">{product.totalSold} sale</p>
       </div>
     </div>
   );
 };
+
 export default MostSoldProductItem;
