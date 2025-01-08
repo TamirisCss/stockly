@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@/app/_components/ui/button";
 import { Combobox, ComboboxOption } from "@/app/_components/ui/combobox";
 import {
@@ -30,7 +31,7 @@ import {
 import { formatCurrency } from "@/app/_helpers/currency";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PlusIcon, CheckIcon } from "lucide-react";
-import { useMemo, useState, Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import UpsertSaleTableDropdownMenu from "./upsert-table-dropdown-menu";
@@ -57,6 +58,7 @@ interface SelectedProduct {
 }
 
 interface UpsertSheetContentProps {
+  isOpen: boolean;
   saleId?: string;
   products: ProductDto[];
   productOptions: ComboboxOption[];
@@ -65,6 +67,7 @@ interface UpsertSheetContentProps {
 }
 
 const UpsertSheetContent = ({
+  isOpen,
   saleId,
   products,
   productOptions,
@@ -93,15 +96,28 @@ const UpsertSheetContent = ({
       quantity: 1,
     },
   });
+
+  useEffect(() => {
+    if (!isOpen) {
+      form.reset();
+      setSelectedProducts([]);
+    }
+  }, [form, isOpen]);
+  useEffect(() => {
+    setSelectedProducts(defaultSelectedProducts ?? []);
+  }, [defaultSelectedProducts]);
+
   const onSubmit = (data: FormSchema) => {
     const selectedProduct = products.find(
       (product) => product.id === data.productId,
     );
+
     if (!selectedProduct) return;
     setSelectedProducts((currentProducts) => {
       const existingProduct = currentProducts.find(
         (product) => product.id === selectedProduct.id,
       );
+
       if (existingProduct) {
         const productIsOutOfStock =
           existingProduct.quantity + data.quantity > selectedProduct.stock;
@@ -120,6 +136,7 @@ const UpsertSheetContent = ({
               quantity: product.quantity + data.quantity,
             };
           }
+
           return product;
         });
       }
@@ -142,6 +159,7 @@ const UpsertSheetContent = ({
         },
       ];
     });
+
     form.reset();
   };
 
