@@ -4,8 +4,6 @@ import Header, {
   HeaderTitle,
 } from "../_components/header";
 import { SummaryCardSkeleton } from "./_components/summary-card";
-import { getDashboard } from "../_data-access/dashboard/get-dashboard";
-import MostSoldProductItem from "./_components/most-sold-product-item";
 import TotalRevenueCard from "./_components/total-revenue-card";
 import { Suspense } from "react";
 import TodayRevenueCard from "./_components/today-revenue-card";
@@ -13,11 +11,12 @@ import TotalSalesCard from "./_components/total-sales-card";
 import TotalInStockCard from "./_components/total-in-stock-card";
 import TotalProductsCard from "./_components/total-products-card";
 import Last14DaysRevenueCard from "./_components/last-14-days-revenue-card";
+import MostSoldProducts, {
+  MostSoldProductsSkeleton,
+} from "./_components/most-sold-products";
 import { Skeleton } from "../_components/ui/skeleton";
 
 const Home = async () => {
-  const { mostSoldProducts } = await getDashboard();
-
   return (
     <div className="m-8 flex w-full flex-col space-y-8 rounded-lg">
       <Header>
@@ -58,16 +57,9 @@ const Home = async () => {
         >
           <Last14DaysRevenueCard />
         </Suspense>
-        <div className="flex h-full flex-col overflow-hidden rounded-xl bg-white">
-          <p className="p-6 text-lg font-semibold text-slate-900">
-            Top sales products
-          </p>
-          <div className="space-y-7 overflow-y-auto px-6 pb-6">
-            {mostSoldProducts.map((product) => (
-              <MostSoldProductItem key={product.productId} product={product} />
-            ))}
-          </div>
-        </div>
+        <Suspense fallback={<MostSoldProductsSkeleton />}>
+          <MostSoldProducts />
+        </Suspense>
       </div>
     </div>
   );
